@@ -1,0 +1,64 @@
+body{
+  margin-top:0;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.indivItem:hover{
+  background:blue;
+}
+
+.indivItem{
+  width:20%;
+  color:#f8ffd7;
+}
+.Selection{
+  width:33%;
+}
+
+.CupcakeBuilder{
+  width:100%;
+}
+
+.appBanner {
+  background:#94af76;
+  width:100%;
+}
+.App-header {
+  background-color: #c5e1a5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+#Base{
+  display:inline-block;
+
+}
+
+#cupcakecontainer{
+  display: inline-block;
+
+}
+
+#Frosting{
+  display:inline-block;
+}
+
+#Topping{ 
+   display:inline-block; 
+
+  }
+
+.App-link {
+  color: #09d3ac;
+}
