@@ -13,7 +13,12 @@ class CupcakeBuilder extends React.Component {
         selectedBase: '',
         selectedFrosting: '',
         selectedTopping: [],
-        startedButtonClicked : false
+        startedButtonClicked : false,
+
+        baseObject:{},
+        toppingObjectTemp:[],
+        toppingObject:[],
+        frostingObject:{}
     } 
     this.cupcakeCallback = this.cupcakeCallback.bind(this);
     this.cupcakeSelect = this.cupcakeSelect.bind(this);
@@ -21,24 +26,35 @@ class CupcakeBuilder extends React.Component {
     this.goToConfirmation = this.goToConfirmation.bind(this);
   }
 
-    cupcakeSelect(e){
+
+    cupcakeSelect(e,test){
         if (this.state.activeSelection === 'base'){
             this.setState({
                 selectedBase : e.target.getAttribute('value'),
-                activeSelection : 'frosting'
+                activeSelection : 'frosting',
+                baseObject: this.state.bases[e.target.getAttribute('data')]
             })
         }
         else if (this.state.activeSelection === 'frosting'){
             this.setState({
                 selectedFrosting : e.target.getAttribute('value'),
-                activeSelection : 'topping'
+                activeSelection : 'topping',
+                frostingObject: this.state.frostings[e.target.getAttribute('data')]
+
             })
         }
         else if (this.state.activeSelection === 'topping'){
             var newToppings = this.state.selectedTopping;
             newToppings.push(e.target.getAttribute('value'));
+            
+            // this.state.toppingObjectTemp.push()
+            var temp = this.state.toppingObject
+            // console.log(e.target.getAttribute('data'))
+            temp = temp.push(this.state.toppings[e.target.getAttribute('data')])
+
             this.setState({
-                selectedTopping : newToppings
+                selectedTopping : newToppings,
+                toppingObject : temp
             })
         }   
     }
@@ -97,20 +113,25 @@ class CupcakeBuilder extends React.Component {
       if (this.state.activeSelection === 'frosting'){
         this.setState({
             selectedFrosting : '',
-            activeSelection : 'base'
+            activeSelection : 'base',
+            frostingObject : {}
         })
       }
       else if (this.state.activeSelection === 'topping'){
         this.setState({
             selectedTopping : [],
-            activeSelection : 'frosting'
+            activeSelection : 'frosting',
+            toppingObject : {}
+
         })
       }
       else{
         this.setState({
             selectedTopping : [],
             activeSelection : 'topping',
-            startedButtonClicked : true
+            startedButtonClicked : true,
+            toppingObject : [],
+            toppingObjectTemp : []
         })
       }
   }
