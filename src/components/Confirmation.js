@@ -13,7 +13,8 @@ class Confirmation extends React.Component {
     deliveryCharge = 1.50;
     total = (parseFloat(this.props.fPrice) + parseFloat(this.props.bPrice) + parseFloat(this.props.tPrice) + this.deliveryCharge).toFixed(2);
     tax = (this.total * .0875).toFixed(2);
-    
+    todaysDate = new Date();
+
     onPlaceOrder(){
       this.setState({
           viewing : 'confirmed'
@@ -52,7 +53,11 @@ class Confirmation extends React.Component {
       else if (this.state.viewing = 'confirmed'){
         return ( 
           <div>
-              <OrderPostHelper/>
+                <OrderPostHelper  base={this.props.base} 
+                                  frosting={this.props.frosting}
+                                  toppings={this.props.toppings}
+                                  date={this.todaysDate}
+                />
           </div>
         );
       }

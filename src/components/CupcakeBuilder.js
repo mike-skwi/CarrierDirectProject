@@ -19,7 +19,6 @@ class CupcakeBuilder extends React.Component {
     this.cupcakeSelect = this.cupcakeSelect.bind(this);
     this.onBackClick = this.onBackClick.bind(this);
     this.goToConfirmation = this.goToConfirmation.bind(this);
-    this.onPlaceOrder = this.onPlaceOrder.bind(this);
   }
 
     cupcakeSelect(e){
@@ -80,7 +79,6 @@ class CupcakeBuilder extends React.Component {
       }
       else{
         for (var j = 0; j < this.state.selectedTopping.length; j++){
-            console.log("J : " + this.state.selectedTopping[j] )
             for (var i = 0; i < this.state.toppings.length; i++ ) {
                 if (this.state.toppings[i].name === this.state.selectedTopping[j]){
                     price += this.state.toppings[i].price;
@@ -94,11 +92,6 @@ class CupcakeBuilder extends React.Component {
 
   }
 
-  onPlaceOrder(){
-    this.setState({
-        activeSelection : 'orderPlaced'
-    })
-  }
 
   onBackClick(){
       if (this.state.activeSelection === 'frosting'){

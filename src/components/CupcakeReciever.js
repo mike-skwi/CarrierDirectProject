@@ -19,7 +19,6 @@ class CupcakeReciever extends React.Component {
     }
 
     addToParent(){
-        console.log(this.state.recievedItems);
             this.props.callbackFromParent(this.state.recievedItems);
             this.setState({
                 startedButtonClicked : true
