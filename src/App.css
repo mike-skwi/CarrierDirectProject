@@ -6,12 +6,8 @@ body{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
 .indivItem:hover{
-  background:blue;
+  background:#94af76;
 }
 
 .indivItem{
@@ -24,6 +20,10 @@ body{
 
 .CupcakeBuilder{
   width:100%;
+}
+
+#orderBackground{
+  background: #94af76;
 }
 
 .appBanner {

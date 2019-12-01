@@ -19,6 +19,7 @@ class CupcakeBuilder extends React.Component {
     this.cupcakeSelect = this.cupcakeSelect.bind(this);
     this.onBackClick = this.onBackClick.bind(this);
     this.goToConfirmation = this.goToConfirmation.bind(this);
+    this.onPlaceOrder = this.onPlaceOrder.bind(this);
   }
 
     cupcakeSelect(e){
@@ -61,6 +62,44 @@ class CupcakeBuilder extends React.Component {
     })
   }
 
+  getPrice(type,item){
+      var price = 0;
+      if (type === 'frosting'){
+        for (var i = 0; i < this.state.frostings.length; i++ ) {
+            if (this.state.frostings[i].name === item){
+                price = this.state.frostings[i].price;
+            }
+        }
+      }
+      else if (type === 'bases'){
+        for (var i = 0; i < this.state.bases.length; i++ ) {
+            if (this.state.bases[i].name === item){
+                price = this.state.bases[i].price;
+            }
+        }
+      }
+      else{
+        for (var j = 0; j < this.state.selectedTopping.length; j++){
+            console.log("J : " + this.state.selectedTopping[j] )
+            for (var i = 0; i < this.state.toppings.length; i++ ) {
+                if (this.state.toppings[i].name === this.state.selectedTopping[j]){
+                    price += this.state.toppings[i].price;
+                }
+            }
+        }
+      }
+
+
+      return (price/100).toFixed(2);
+
+  }
+
+  onPlaceOrder(){
+    this.setState({
+        activeSelection : 'orderPlaced'
+    })
+  }
+
   onBackClick(){
       if (this.state.activeSelection === 'frosting'){
         this.setState({
@@ -89,6 +128,7 @@ class CupcakeBuilder extends React.Component {
             <div className="CupcakeBuilder">
                   <h1 class="appBanner">Tinycakes Cupcake Order Maker</h1>
                   <CupcakeReciever selectedAlready={this.state.startedButtonClicked} callbackFromParent={this.cupcakeCallback} requested={["bases","toppings","frostings"]}/>
+                  <br/>
                   <Selection onClick={this.cupcakeSelect} id={'Base'} passedArray={this.state.bases}/>
             </div>
           );      
@@ -98,6 +138,7 @@ class CupcakeBuilder extends React.Component {
             <div className="CupcakeBuilder">
                   <h1 class="appBanner">Tinycakes Cupcake Order Maker</h1>
                   <Selection onClick={this.cupcakeSelect} id={'Frosting'} passedArray={this.state.frostings}/>      
+                  <br/>
                   <button onClick={this.onBackClick}>Back</button>
             </div>
         );
@@ -107,6 +148,7 @@ class CupcakeBuilder extends React.Component {
             <div className="CupcakeBuilder">
                   <h1 class="appBanner">Tinycakes Cupcake Order Maker</h1>
                   <Selection onClick={this.cupcakeSelect} id={'Topping'} passedArray={this.state.toppings}/>
+                  <br/>
                   <button onClick={this.onBackClick}>Back</button>
                   <button onClick={this.goToConfirmation}>Go To Confirmation Screen</button>
             </div>
@@ -116,7 +158,14 @@ class CupcakeBuilder extends React.Component {
         return(
             <div className="CupcakeBuilder">
                 <h1>Confirmation</h1>
-                <Confirmation />
+                <Confirmation   toppings={this.state.selectedTopping}
+                                base={this.state.selectedBase}
+                                frosting={this.state.selectedFrosting}
+                                bPrice={this.getPrice('bases',this.state.selectedBase)}
+                                fPrice={this.getPrice('frosting',this.state.selectedFrosting)}
+                                tPrice={this.getPrice('toppings',this.state.selectedTopping)}
+                />
+                <br/>
                 <button onClick={this.onBackClick}>Back</button>
             </div>
         );

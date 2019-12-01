@@ -30,7 +30,8 @@ class CupcakeReciever extends React.Component {
     super(props);
         this.state = { 
             recievedItems : [],
-            startedButtonClicked : false
+            startedButtonClicked : false,
+            indivRecieve: false
         } 
         this.addToParent = this.addToParent.bind(this);
     }
