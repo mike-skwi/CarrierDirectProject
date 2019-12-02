@@ -46,11 +46,8 @@ class CupcakeBuilder extends React.Component {
         else if (this.state.activeSelection === 'topping'){
             var newToppings = this.state.selectedTopping;
             newToppings.push(e.target.getAttribute('value'));
-            
-            // this.state.toppingObjectTemp.push()
             var temp = this.state.toppingObject
-            // console.log(e.target.getAttribute('data'))
-            temp = temp.push(this.state.toppings[e.target.getAttribute('data')])
+            this.temp = temp.push(this.state.toppings[e.target.getAttribute('data')])
 
             this.setState({
                 selectedTopping : newToppings,
@@ -102,10 +99,7 @@ class CupcakeBuilder extends React.Component {
             }
         }
       }
-
-
       return (price/100).toFixed(2);
-
   }
 
 
@@ -178,6 +172,9 @@ class CupcakeBuilder extends React.Component {
                                 bPrice={this.getPrice('bases',this.state.selectedBase)}
                                 fPrice={this.getPrice('frosting',this.state.selectedFrosting)}
                                 tPrice={this.getPrice('toppings',this.state.selectedTopping)}
+                                bObject={this.state.baseObject}
+                                fObject={this.state.frostingObject}
+                                tObject={this.state.toppingObject}
                 />
                 <br/>
                 <button onClick={this.onBackClick}>Back</button>

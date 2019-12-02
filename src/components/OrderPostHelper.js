@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import OrderManagement from './OrderManagement.js'
 
 class OrderPostHelper extends React.Component {
     constructor(props){
@@ -7,37 +8,14 @@ class OrderPostHelper extends React.Component {
      this.state = {
             "order": {
               "cupcakes": [{
-                        // 'frosting':this.props.frosting,
-                        // 'toppings':this.props.topping,
-                        // 'base':this.props.base
-                        'frosting':{
-                            "key": "vanillaFrosting",
-                            "name": "Vanilla Frosting",
-                            "price": 15,
-                            "ingredients": [
-                            "vanilla frosting"
-                            ]
-                        },
-                        'toppings':[{
-                            "key": "sprinkles",
-                            "name": "Sprinkles",
-                            "price": 10,
-                            "ingredients": [
-                            "sprinkles"
-                            ]                            
-                        }],
-                        'base':{
-                            "key": "peanutButterBase",
-                            "name": "Peanut Butter Base",
-                            "price": 85,
-                            "ingredients": [
-                            "peanut butter cup cake"
-                            ]
+                        'frosting':this.props.frosting,
+                        'toppings': [this.props.toppings],
+                        'base':this.props.base
                     }
-              }],
+              ],
                'delivery_date':(this.props.date).toString()
             }
-          }
+        }
     }
 
      componentDidMount(props){
@@ -50,12 +28,10 @@ class OrderPostHelper extends React.Component {
     }
         
     render () {
-     return (
-      
-      <div id="signup">
-
-      </div>
-
+        return (
+            <div>
+                <OrderManagement/>
+            </div>        
      );
     }
    }

@@ -22,8 +22,7 @@ class Selection extends React.Component {
     }
 
   render() {
-    return (
-      
+    return (  
             <div id={this.props.id}>
                 {this.props.passedArray.map((obj,key) => 
                     <div key={key}>
@@ -31,11 +30,9 @@ class Selection extends React.Component {
                           data={this.state.accValue}
                             // onClick={this.props.onClick}
                             onClick={this.wrapperFunction}
-
                             class="indivItem">
                             {obj.name}
                         </span>
-                        {    console.log("AA" + this.state.accValue)}
                         <p style={invis}>{this.state.accValue = this.state.accValue + 1}</p>
                     </div>
           )}

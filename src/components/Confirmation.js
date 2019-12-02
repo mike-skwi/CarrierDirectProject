@@ -53,9 +53,9 @@ class Confirmation extends React.Component {
       else if (this.state.viewing = 'confirmed'){
         return ( 
           <div>
-                <OrderPostHelper  base={this.props.base} 
-                                  frosting={this.props.frosting}
-                                  toppings={this.props.toppings}
+                <OrderPostHelper  base={this.props.bObject} 
+                                  frosting={this.props.fObject}
+                                  toppings={this.props.tObject}
                                   date={this.todaysDate}
                 />
           </div>
